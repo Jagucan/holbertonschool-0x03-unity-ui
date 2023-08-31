@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public int health = 5;
     private int score = 0;
     public float speed;
+    
     public Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
@@ -37,11 +39,21 @@ public class PlayerController : MonoBehaviour
         {
             health--;
             Debug.Log("Healt: " + health);
+            if (health <= 0)
+            {
+                RestartScene();
+                Debug.Log("Game Over!");
+            }
         }
 
         if (other.CompareTag("Goal"))
         {
             Debug.Log("You win!");
         }
+    }
+    void RestartScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }
