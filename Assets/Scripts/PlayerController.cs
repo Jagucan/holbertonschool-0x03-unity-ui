@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     public float speed;
     public Text scoreText;
-
-
+    public Text healthText;
     public Rigidbody rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Trap"))
         {
             health--;
-            Debug.Log("Healt: " + health);
+            SetHealthText();
+
             if (health <= 0)
             {
                 RestartScene();
@@ -61,5 +62,10 @@ public class PlayerController : MonoBehaviour
     void SetScoreText()
     {
         scoreText.text = "Score: " + score.ToString();
+    }
+
+    void SetHealthText()
+    {
+        healthText.text = "Health: " + health.ToString();
     }
 }
