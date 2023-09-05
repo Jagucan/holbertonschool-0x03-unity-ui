@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
         
         Vector3 moveXYZ = new Vector3 (movX, 0f, movZ);
         rigidbody.AddForce (moveXYZ * speed);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     void OnTriggerEnter(Collider other)
