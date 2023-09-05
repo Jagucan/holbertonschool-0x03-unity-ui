@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private readonly float delay = 3;
     public int health = 5;
     private int score = 0;
     public float speed;
@@ -58,24 +57,18 @@ public class PlayerController : MonoBehaviour
                 textWinLose.text = "Game Over!";
                 textWinLoseColor.color = loseTextColor;
                 backgroundWinLose.color = backgroundLoseColor;
-                StartCoroutine(Countdown());
+                StartCoroutine(LoadScene(3));
             }
         }
 
         if (other.CompareTag("Goal"))
         {
-            Debug.Log(delay.ToString());
             playerWinLose.SetActive(true);
             textWinLose.text = "You Win!";
             textWinLoseColor.color = winTextColor;
             backgroundWinLose.color = backgroundWinColor;
-            StartCoroutine(Countdown());
+            StartCoroutine(LoadScene(3));
         }
-    }
-
-    private void StartCorountine(IEnumerator enumerator)
-    {
-        throw new NotImplementedException();
     }
 
     void RestartScene()
@@ -84,9 +77,9 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-    IEnumerator Countdown()
+    IEnumerator LoadScene(float seconds)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(seconds);
         RestartScene();
     }
 
