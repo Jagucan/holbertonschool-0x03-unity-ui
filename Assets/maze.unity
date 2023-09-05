@@ -1965,10 +1965,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc85493419e58e43ae7d0a9205f7821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 3
   health: 5
   speed: 5
   scoreText: {fileID: 2002465097}
   healthText: {fileID: 904551218}
+  playerWinLose: {fileID: 555303928}
+  textWinLoseColor: {fileID: 332850061}
+  textWinLose: {fileID: 332850061}
+  backgroundWinLose: {fileID: 555303930}
   rigidbody: {fileID: 361295762}
 --- !u!1001 &380497235
 PrefabInstance:

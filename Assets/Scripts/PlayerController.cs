@@ -1,14 +1,25 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private readonly float delay = 3;
     public int health = 5;
     private int score = 0;
     public float speed;
     public Text scoreText;
     public Text healthText;
+    public GameObject playerWinLose;
+    public Text textWinLoseColor;
+    public Text textWinLose;
+    public Image backgroundWinLose;
+    private Color winTextColor = Color.black;
+    private Color backgroundWinColor = Color.green;
+    private Color loseTextColor = Color.black;
+    private Color backgroundLoseColor = Color.red;
     public Rigidbody rigidbody;
 
     // Start is called before the first frame update
@@ -43,20 +54,40 @@ public class PlayerController : MonoBehaviour
 
             if (health <= 0)
             {
-                RestartScene();
-                Debug.Log("Game Over!");
+                playerWinLose.SetActive(true);
+                textWinLose.text = "Game Over!";
+                textWinLoseColor.color = loseTextColor;
+                backgroundWinLose.color = backgroundLoseColor;
+                StartCoroutine(Countdown());
             }
         }
 
         if (other.CompareTag("Goal"))
         {
-            Debug.Log("You win!");
+            Debug.Log(delay.ToString());
+            playerWinLose.SetActive(true);
+            textWinLose.text = "You Win!";
+            textWinLoseColor.color = winTextColor;
+            backgroundWinLose.color = backgroundWinColor;
+            StartCoroutine(Countdown());
         }
     }
+
+    private void StartCorountine(IEnumerator enumerator)
+    {
+        throw new NotImplementedException();
+    }
+
     void RestartScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    IEnumerator Countdown()
+    {
+        yield return new WaitForSeconds(delay);
+        RestartScene();
     }
 
     void SetScoreText()
